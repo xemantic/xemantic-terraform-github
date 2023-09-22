@@ -36,9 +36,7 @@ resource github_branch_protection main {
   allows_force_pushes             = false
   blocks_creations                = false
   enforce_admins                  = false
-  force_push_bypassers            = []
   lock_branch                     = false
-  push_restrictions               = []
   require_conversation_resolution = false
   require_signed_commits          = false
   required_linear_history         = false
