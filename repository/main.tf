@@ -29,7 +29,7 @@ resource github_repository this {
   }
 }
 
-resource github_branch_protection this {
-  repository_id = github_repository.this.id
-  pattern = "main"
-}
+#resource github_branch_protection this {
+#  repository_id = github_repository.this.id
+#  pattern = "main"
+#}
