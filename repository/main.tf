@@ -12,10 +12,10 @@ provider "github" {
 }
 
 resource github_repository this {
-  name = var.repository
-  description = var.description
+  name                 = var.repository
+  description          = var.description
   vulnerability_alerts = true
-  has_wiki = false
+  has_wiki             = false
   dynamic "pages" {
     for_each = var.pages_url != null ? [1] : []
     content {
@@ -23,13 +23,13 @@ resource github_repository this {
       cname      = var.pages_url
       source {
         branch = "main"
-        path = "/"
+        path   = "/"
       }
     }
   }
 }
 
-#resource "github_branch_protection_v3" "prachtsaal_berlin_branch_protection" {
-#  branch     = "main"
-#  repository = var.repository
-#}
+resource github_branch_protection this {
+  repository_id = github_repository.this.id
+  pattern = "main"
+}
