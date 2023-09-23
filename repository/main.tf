@@ -11,7 +11,7 @@ provider "github" {
   owner = var.owner
 }
 
-resource github_repository this {
+resource "github_repository" "this" {
   name                   = var.name
   description            = var.description
   vulnerability_alerts   = true
@@ -44,7 +44,7 @@ resource github_repository this {
   }
 }
 
-resource github_branch_protection main {
+resource "github_branch_protection" "main" {
   repository_id                   = github_repository.this.node_id
   pattern                         = "main"
   allows_deletions                = false
