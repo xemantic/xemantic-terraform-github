@@ -45,6 +45,7 @@ resource "github_repository" "this" {
 }
 
 resource "github_branch_protection" "main" {
+  count                           = var.branch_protection ? 1 : 0
   repository_id                   = github_repository.this.node_id
   pattern                         = "main"
   allows_deletions                = false
