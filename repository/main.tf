@@ -51,11 +51,19 @@ resource "github_branch_protection" "main" {
   allows_deletions                = false
   allows_force_pushes             = false
   blocks_creations                = false
-  enforce_admins                  = false
+  enforce_admins                  = true
   force_push_bypassers            = []
   lock_branch                     = false
   push_restrictions               = []
   require_conversation_resolution = true
   require_signed_commits          = false
   required_linear_history         = true
+  required_status_checks {
+    strict = true
+  }
+  required_pull_request_reviews {
+    dismiss_stale_reviews = true
+    required_approving_review_count = 1
+    require_last_push_approval = true
+  }
 }
