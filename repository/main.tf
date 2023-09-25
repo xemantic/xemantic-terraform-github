@@ -62,8 +62,8 @@ resource "github_branch_protection" "main" {
     strict = true
   }
   required_pull_request_reviews {
-    dismiss_stale_reviews = true
+    dismiss_stale_reviews           = true
     required_approving_review_count = 1
-    require_last_push_approval = true
+    require_last_push_approval      = true
   }
 }
