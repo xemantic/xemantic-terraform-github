@@ -1,8 +1,9 @@
 terraform {
+  required_version = ">= 1.6.0"
   required_providers {
     github = {
       source  = "integrations/github"
-      version = "~> 5.0"
+      version = "~> 6.0"
     }
   }
 }
@@ -54,7 +55,6 @@ resource "github_branch_protection" "main" {
   enforce_admins                  = true
   force_push_bypassers            = []
   lock_branch                     = false
-  push_restrictions               = []
   require_conversation_resolution = true
   require_signed_commits          = false
   required_linear_history         = true
