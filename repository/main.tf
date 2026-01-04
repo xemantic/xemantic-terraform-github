@@ -51,7 +51,6 @@ resource "github_branch_protection" "main" {
   pattern                         = "main"
   allows_deletions                = false
   allows_force_pushes             = false
-  blocks_creations                = false
   enforce_admins                  = true
   force_push_bypassers            = []
   lock_branch                     = false
