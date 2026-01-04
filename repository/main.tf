@@ -45,24 +45,30 @@ resource "github_repository" "this" {
   }
 }
 
-resource "github_branch_protection" "main" {
-  count                           = var.branch_protection ? 1 : 0
-  repository_id                   = github_repository.this.node_id
-  pattern                         = "main"
-  allows_deletions                = false
-  allows_force_pushes             = false
-  enforce_admins                  = true
-  force_push_bypassers            = []
-  lock_branch                     = false
-  require_conversation_resolution = true
-  require_signed_commits          = false
-  required_linear_history         = true
-  required_status_checks {
-    strict = true
+resource "github_repository_ruleset" "main" {
+  count       = var.branch_protection ? 1 : 0
+  name        = "main-branch-protection"
+  repository  = github_repository.this.name
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
   }
-  required_pull_request_reviews {
-    dismiss_stale_reviews           = true
-    required_approving_review_count = 1
-    require_last_push_approval      = true
+
+  rules {
+    deletion                = true
+    non_fast_forward        = true
+    required_linear_history = true
+
+    pull_request {
+      required_approving_review_count   = 1
+      required_review_thread_resolution = true
+      dismiss_stale_reviews_on_push     = true
+      require_last_push_approval        = true
+    }
   }
 }

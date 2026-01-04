@@ -10,16 +10,16 @@ This is a Terraform module for creating GitHub repositories with opinionated def
 - Squash merge only (no merge commits or rebases)
 - Auto-delete branches on merge
 - Auto-init enabled
-- Optional branch protection on `main` with PR reviews, conversation resolution, and linear history required
+- Optional repository ruleset on `main` with PR reviews, conversation resolution, and linear history required
 
 ## Architecture
 
 The module lives in the `repository/` directory:
-- `main.tf` - Core resources: `github_repository` and `github_branch_protection`
+- `main.tf` - Core resources: `github_repository` and `github_repository_ruleset`
 - `variables.tf` - Input variables (owner, name, description, visibility, features, branch_protection)
 - `outputs.tf` - Exports `repository_id`
 
-Uses the `integrations/github` provider (~> 5.0).
+Uses the `integrations/github` provider (~> 6.0).
 
 ## Usage as a Module
 
@@ -36,6 +36,6 @@ module "my_repo" {
 
 ## Key Configuration Notes
 
-- `branch_protection` defaults to `true` but must be `false` for private repos on free GitHub plans
+- `branch_protection` defaults to `true` but must be `false` for private repos on free GitHub plans (rulesets have the same plan restrictions as the legacy branch protection)
 - `private` defaults to `false` (public visibility)
 - Features like `has_issues`, `has_wiki`, `has_discussions`, `has_projects` all default to `false`

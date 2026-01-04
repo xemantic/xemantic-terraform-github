@@ -68,7 +68,7 @@ variable "topics" {
 }
 
 variable "branch_protection" {
-  description = "Set to `true` to enable repository branch protection. For `private` repos on free plan it should be `false`"
+  description = "Set to `true` to enable repository ruleset for branch protection. For `private` repos on free plan it should be `false`"
   type        = bool
   default     = true
 }

@@ -33,5 +33,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Ignore lock file (this is a module, consumers will have their own lock file)
+.terraform.lock.hcl
+
 # Ignore idea
 /.idea/
