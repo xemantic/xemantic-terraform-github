@@ -34,6 +34,10 @@ module "my_repo" {
 }
 ```
 
+## Development Guidelines
+
+Before making any changes to this module, consult the official GitHub Terraform provider documentation at https://registry.terraform.io/providers/integrations/github/latest/docs to ensure compatibility with the latest provider version and best practices.
+
 ## Key Configuration Notes
 
 - `branch_protection` defaults to `true` but must be `false` for private repos on free GitHub plans (rulesets have the same plan restrictions as the legacy branch protection)

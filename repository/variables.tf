@@ -78,3 +78,9 @@ variable "required_status_check" {
   type        = string
   default     = "build_branch"
 }
+
+variable "dev_team_id" {
+  description = "The ID of the developers team to grant push access. Set to `null` to skip team association."
+  type        = string
+  default     = null
+}
