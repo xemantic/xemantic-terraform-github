@@ -70,5 +70,16 @@ resource "github_repository_ruleset" "main" {
       dismiss_stale_reviews_on_push     = true
       require_last_push_approval        = true
     }
+
+    dynamic "required_status_checks" {
+      for_each = var.required_status_check != null ? [1] : []
+      content {
+        strict_required_status_checks_policy = true
+
+        required_check {
+          context = var.required_status_check
+        }
+      }
+    }
   }
 }

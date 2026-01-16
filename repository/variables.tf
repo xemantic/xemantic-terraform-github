@@ -72,3 +72,9 @@ variable "branch_protection" {
   type        = bool
   default     = true
 }
+
+variable "required_status_check" {
+  description = "The name of the status check context that must pass before merging. Set to `null` to disable status check requirement."
+  type        = string
+  default     = "build_branch"
+}
