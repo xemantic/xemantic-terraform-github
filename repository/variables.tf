@@ -34,7 +34,7 @@ variable "pages_url" {
 variable "has_issues" {
   description = "Set to `true` to enable the GitHub Issues features on the repository"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "has_discussions" {
