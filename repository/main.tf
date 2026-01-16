@@ -76,6 +76,7 @@ resource "github_repository_ruleset" "main" {
       required_review_thread_resolution = true
       dismiss_stale_reviews_on_push     = true
       require_last_push_approval        = true
+      allowed_merge_methods             = ["squash"]
     }
 
     dynamic "required_status_checks" {
