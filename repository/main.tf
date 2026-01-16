@@ -22,7 +22,6 @@ resource "github_repository" "this" {
   has_discussions        = var.has_discussions
   has_projects           = var.has_projects
   has_wiki               = var.has_wiki
-  has_downloads          = false
   allow_merge_commit     = false
   allow_squash_merge     = true
   allow_rebase_merge     = false
@@ -31,6 +30,7 @@ resource "github_repository" "this" {
   auto_init              = true
   license_template       = var.license_template
   allow_update_branch    = true
+  allow_forking          = var.private ? false : true
   topics                 = var.topics
   dynamic "pages" {
     for_each = var.pages_url != null ? [1] : []
