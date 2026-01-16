@@ -45,6 +45,13 @@ resource "github_repository" "this" {
   }
 }
 
+resource "github_team_repository" "developers" {
+  count      = var.dev_team_id != null ? 1 : 0
+  team_id    = var.dev_team_id
+  repository = github_repository.this.name
+  permission = "push"
+}
+
 resource "github_repository_ruleset" "main" {
   count       = var.branch_protection ? 1 : 0
   name        = "main-branch-protection"
