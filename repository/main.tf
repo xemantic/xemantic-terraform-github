@@ -44,6 +44,7 @@ resource "github_repository" "this" {
       }
     }
   }
+  lifecycle { ignore_changes = [template] }
 }
 
 resource "github_team_repository" "developers" {
