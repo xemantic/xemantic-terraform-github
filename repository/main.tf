@@ -32,6 +32,7 @@ resource "github_repository" "this" {
   allow_update_branch    = true
   allow_forking          = var.private ? false : true
   topics                 = var.topics
+  is_template            = var.is_template
   dynamic "pages" {
     for_each = var.pages_url != null ? [1] : []
     content {

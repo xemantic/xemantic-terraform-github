@@ -84,3 +84,9 @@ variable "dev_team_id" {
   type        = string
   default     = null
 }
+
+variable "is_template" {
+  description = "Set to `true` to make this repository available as a template repository"
+  type        = bool
+  default     = false
+}
