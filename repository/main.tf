@@ -32,6 +32,7 @@ resource "github_repository" "this" {
   allow_update_branch    = true
   allow_forking          = var.private ? false : true
   topics                 = var.topics
+  is_template            = var.is_template
   dynamic "pages" {
     for_each = var.pages_url != null ? [1] : []
     content {
@@ -43,6 +44,7 @@ resource "github_repository" "this" {
       }
     }
   }
+  lifecycle { ignore_changes = [template] }
 }
 
 resource "github_team_repository" "developers" {
@@ -61,7 +63,7 @@ resource "github_repository_ruleset" "main" {
 
   conditions {
     ref_name {
-      include = ["~DEFAULT_BRANCH"]
+      include = ["refs/heads/main"]
       exclude = []
     }
   }

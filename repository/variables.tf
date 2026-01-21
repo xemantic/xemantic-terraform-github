@@ -76,11 +76,17 @@ variable "branch_protection" {
 variable "required_status_check" {
   description = "The name of the status check context that must pass before merging. Set to `null` to disable status check requirement."
   type        = string
-  default     = "build_branch"
+  default     = "build_branch / build"
 }
 
 variable "dev_team_id" {
   description = "The ID of the developers team to grant push access. Set to `null` to skip team association."
   type        = string
   default     = null
+}
+
+variable "is_template" {
+  description = "Set to `true` to make this repository available as a template repository"
+  type        = bool
+  default     = false
 }
