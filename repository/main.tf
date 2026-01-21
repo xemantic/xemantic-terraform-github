@@ -30,7 +30,7 @@ resource "github_repository" "this" {
   auto_init              = true
   license_template       = var.license_template
   allow_update_branch    = true
-  allow_forking          = var.private ? false : true
+  allow_forking          = var.private ? null : true
   topics                 = var.topics
   is_template            = var.is_template
   dynamic "pages" {
