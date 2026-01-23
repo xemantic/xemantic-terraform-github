@@ -82,12 +82,15 @@ resource "github_repository_ruleset" "main" {
     }
 
     dynamic "required_status_checks" {
-      for_each = var.required_status_check != null ? [1] : []
+      for_each = length(var.required_status_checks) > 0 ? [1] : []
       content {
         strict_required_status_checks_policy = true
 
-        required_check {
-          context = var.required_status_check
+        dynamic "required_check" {
+          for_each = var.required_status_checks
+          content {
+            context = required_check.value
+          }
         }
       }
     }

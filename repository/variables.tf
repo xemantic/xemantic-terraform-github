@@ -73,10 +73,10 @@ variable "branch_protection" {
   default     = true
 }
 
-variable "required_status_check" {
-  description = "The name of the status check context that must pass before merging. Set to `null` to disable status check requirement."
-  type        = string
-  default     = "build_branch / build"
+variable "required_status_checks" {
+  description = "List of status check contexts that must pass before merging. Set to empty list to disable status check requirement."
+  type        = list(string)
+  default     = []
 }
 
 variable "dev_team_id" {
